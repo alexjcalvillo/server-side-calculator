@@ -24,6 +24,13 @@ function submitMath() {
   };
   console.table(equation);
   // post this data to the server
+  $.ajax({
+    type: 'POST',
+    url: '/calculate',
+    data: equation,
+  }).then((response) => {
+    console.log('Post response ', response);
+  });
 }
 
 function reset() {
