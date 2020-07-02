@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+
+    <script src="vendors/jquery.min.js"></script>
+    <script src="scripts/client.js"></script>
+  </head>
+  <body>
+    <div>Hello</div>
+    <div>
+      <input
+        id="js-first-number"
+        type="number"
+        placeholder="enter your first number"
+      />
+      <button data-math="+">+</button>
+      <button data-math="-">-</button>
+      <button data-math="/">/</button>
+      <button data-math="*">*</button>
+      <input
+        id="js-second-number"
+        type="number"
+        placeholder="enter your second number"
+      />
+      <button id="js-calculate">=</button>
+      <button id="js-clear">C</button>
+    </div>
+    <div id="js-answer">Answer: 0</div>
+  </body>
+</html>
