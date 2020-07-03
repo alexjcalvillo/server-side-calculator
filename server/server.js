@@ -31,7 +31,6 @@ app.post('/calculate', (req, res) => {
     equation.answer =
       parseInt(equation.firstNum) / parseInt(equation.secondNum);
   }
-
   //   equation.answer = 0;
   console.log(equation.answer);
   console.log(equation);

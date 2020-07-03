@@ -47,10 +47,15 @@ function getCalculation() {
     url: '/calculate',
   }).then((response) => {
     console.log('GET - response', response);
-    render();
+    render(response);
   });
 }
 
-function render() {
+function render(calcWithAnswer) {
   // TODO: display stuff on html screen
+  console.log(calcWithAnswer);
+  $('#js-answer').empty();
+  $('#js-answer').append(`
+    <p>Answer: ${calcWithAnswer[calcWithAnswer.length - 1].answer}</p>
+    `);
 }
