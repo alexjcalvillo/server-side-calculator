@@ -30,10 +30,27 @@ function submitMath() {
     data: equation,
   }).then((response) => {
     console.log('Post response ', response);
+    // get back the transformed data from server
+    getCalculation();
   });
 }
 
 function reset() {
   $('#js-first-number').val('');
   $('#js-second-number').val('');
+}
+
+function getCalculation() {
+  // get back data from the server transformed
+  $.ajax({
+    type: 'GET',
+    url: '/calculate',
+  }).then((response) => {
+    console.log('GET - response', response);
+    render();
+  });
+}
+
+function render() {
+  // TODO: display stuff on html screen
 }
