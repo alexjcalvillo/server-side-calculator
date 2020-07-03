@@ -1,5 +1,6 @@
 $(document).ready(init);
 let calcType = null;
+const equation = {};
 
 function init() {
   console.log('jquery is loaded');
@@ -11,13 +12,14 @@ function init() {
 }
 
 function setMathType(event) {
+  console.log($(this).data());
   calcType = $(this).data();
   calcType = calcType.math;
 }
 
 function submitMath() {
   console.log('calculating');
-  const equation = {
+  equation = {
     firstNum: $('#js-first-number').val(),
     secondNum: $('#js-second-number').val(),
     calcType,
@@ -26,12 +28,11 @@ function submitMath() {
   if (
     equation.firstNum == '' ||
     equation.secondNum == '' ||
-    equation.calcType == ''
+    equation.calcType == ('' || null)
   ) {
     alert('Not a complete equation.');
     return;
   }
-
   console.table(equation);
   // post this data to the server
   $.ajax({
