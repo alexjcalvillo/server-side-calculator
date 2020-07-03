@@ -22,6 +22,16 @@ function submitMath() {
     secondNum: $('#js-second-number').val(),
     calcType,
   };
+
+  if (
+    equation.firstNum == '' ||
+    equation.secondNum == '' ||
+    equation.calcType == ''
+  ) {
+    alert('Not a complete equation.');
+    return;
+  }
+
   console.table(equation);
   // post this data to the server
   $.ajax({
@@ -58,4 +68,10 @@ function render(calcWithAnswer) {
   $('#js-answer').append(`
     <p>Answer: ${calcWithAnswer[calcWithAnswer.length - 1].answer}</p>
     `);
+  $('#js-history').empty();
+  for (let i = 0; i < calcWithAnswer.length; i++) {
+    $('#js-history').append(`
+        <li>${calcWithAnswer[i].firstNum} ${calcWithAnswer[i].calcType} ${calcWithAnswer[i].secondNum} = ${calcWithAnswer[i].answer}</li>
+        `);
+  }
 }
