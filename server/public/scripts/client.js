@@ -1,7 +1,7 @@
 $(document).ready(init);
-let calcType = null;
-let inputValue1 = null;
-let inputValue2 = null;
+let calcType = '';
+let inputValue1 = '';
+let inputValue2 = '';
 
 function init() {
   console.log('jquery is loaded');
@@ -51,14 +51,15 @@ function setMathType(event) {
     case 7:
     case 8:
     case 9:
-      if (inputValue1 !== null) {
-        inputValue2 = value;
-      } else {
+      if (calcType === '') {
         inputValue1 = value;
+      } else {
+        inputValue2 = value;
       }
     default:
       break;
   }
+  renderInputs();
 }
 
 function submitMath() {
@@ -91,9 +92,9 @@ function submitMath() {
 }
 
 function reset() {
-  inputValue1 = null;
-  inputValue2 = null;
-  calcType = null;
+  inputValue1 = '';
+  inputValue2 = '';
+  calcType = '';
 }
 
 function getCalculation() {
@@ -121,3 +122,14 @@ function render(calcWithAnswer) {
         `);
   }
 }
+
+function renderInputs() {
+  console.log('in renderInputs');
+  $('#js-first-number').empty();
+
+  $('#js-first-number').append(`
+  <p>${inputValue1} ${calcType} ${inputValue2}</p>
+  `);
+}
+
+function createInput1() {}
