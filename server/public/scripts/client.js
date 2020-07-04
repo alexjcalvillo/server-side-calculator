@@ -1,27 +1,71 @@
 $(document).ready(init);
 let calcType = null;
-const equation = {};
+let inputValue1 = null;
+let inputValue2 = null;
 
 function init() {
   console.log('jquery is loaded');
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 14; i++) {
     $('button').eq(i).on('click', { value: i }, setMathType);
   }
+
+  //   $('.js-button-selector').on('click', (event) => {
+  //     console.log($(this).data());
+  //     // if ($(this).data() === '+' || '-' || '/' || '*') {
+  //     //   calcType = $(this).data().math;
+  //     //   console.log(calcType);
+  //     // } else {
+  //     //   console.log($(this).data('math'));
+  //     // }
+  //   });
+
   $('#js-calculate').on('click', submitMath);
   $('#js-clear').on('click', reset);
 }
 
 function setMathType(event) {
-  console.log($(this).data());
-  calcType = $(this).data();
-  calcType = calcType.math;
+  //   calcType = $(this).data();
+  //   calcType = calcType.math;
+  //   console.log(calcType);
+  let value = $(this).data().math;
+  console.log(value);
+  switch (value) {
+    case '+':
+      calcType = value;
+      break;
+    case '-':
+      calcType = value;
+      break;
+    case '/':
+      calcType = value;
+      break;
+    case '*':
+      calcType = value;
+      break;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+      if (inputValue1 !== null) {
+        inputValue2 = value;
+      } else {
+        inputValue1 = value;
+      }
+    default:
+      break;
+  }
 }
 
 function submitMath() {
   console.log('calculating');
-  equation = {
-    firstNum: $('#js-first-number').val(),
-    secondNum: $('#js-second-number').val(),
+  const equation = {
+    firstNum: inputValue1,
+    secondNum: inputValue2,
     calcType,
   };
 
@@ -47,8 +91,9 @@ function submitMath() {
 }
 
 function reset() {
-  $('#js-first-number').val('');
-  $('#js-second-number').val('');
+  inputValue1 = null;
+  inputValue2 = null;
+  calcType = null;
 }
 
 function getCalculation() {
