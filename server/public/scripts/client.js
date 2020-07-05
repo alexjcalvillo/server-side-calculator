@@ -5,7 +5,7 @@ let inputValue2 = [];
 
 function init() {
   console.log('jquery is loaded');
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < 17; i++) {
     $('button').eq(i).on('click', { value: i }, setMathType);
   }
 
@@ -22,16 +22,32 @@ function setMathType(event) {
   console.log(value);
   switch (value) {
     case '+':
-      calcType = value;
+      if (inputValue1.length === 0) {
+        alert('Please select a value first');
+      } else {
+        calcType = value;
+      }
       break;
     case '-':
-      calcType = value;
+      if (inputValue1.length === 0) {
+        alert('Please select a value first');
+      } else {
+        calcType = value;
+      }
       break;
     case '/':
-      calcType = value;
+      if (inputValue1.length === 0) {
+        alert('Please select a value first');
+      } else {
+        calcType = value;
+      }
       break;
     case '*':
-      calcType = value;
+      if (inputValue1.length === 0) {
+        alert('Please select a value first');
+      } else {
+        calcType = value;
+      }
       break;
     case 1:
     case 2:
@@ -83,6 +99,7 @@ function submitMath() {
     console.log('Post response ', response);
     // get back the transformed data from server
     getCalculation();
+    reset();
   });
 }
 
@@ -92,7 +109,10 @@ function reset() {
   inputValue2 = [];
   calcType = '';
   renderInputs();
-  $('.answer').remove();
+  $('.answer').empty();
+  $('.answer').append(`
+  <p>Answer:</p>
+  `);
 }
 
 function getCalculation() {
@@ -109,6 +129,8 @@ function getCalculation() {
 function render(calcWithAnswer) {
   // display stuff on html screen
   console.log(calcWithAnswer);
+  $('#js-answer').empty();
+
   $('#js-answer').append(`
     <p class='answer'>Answer: ${
       calcWithAnswer[calcWithAnswer.length - 1].answer
@@ -117,7 +139,7 @@ function render(calcWithAnswer) {
   $('#js-history').empty();
   for (let i = 0; i < calcWithAnswer.length; i++) {
     $('#js-history').append(`
-        <li>${calcWithAnswer[i].firstNum} ${calcWithAnswer[i].calcType} ${calcWithAnswer[i].secondNum} = ${calcWithAnswer[i].answer}</li>
+        <li class="js-prevEquation" data-answer="${calcWithAnswer[i].answer}">${calcWithAnswer[i].firstNum} ${calcWithAnswer[i].calcType} ${calcWithAnswer[i].secondNum} = ${calcWithAnswer[i].answer}</li>
         `);
   }
 }
@@ -130,7 +152,7 @@ function renderInputs() {
   let displayValue2 = inputValue2.join('');
 
   $('#js-displayField').append(`
-  <p>${displayValue1} ${calcType} ${displayValue2}</p>
+  <p class="displayText">${displayValue1} ${calcType} ${displayValue2}</p>
   `);
 }
 

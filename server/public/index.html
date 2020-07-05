@@ -3,46 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Calculator</title>
     <link rel="stylesheet" href="styles/styles.css" />
 
     <script src="vendors/jquery.min.js"></script>
     <script src="scripts/client.js"></script>
   </head>
-  <body>
-    <div>Hello</div>
-    <div>
-      <div
-        id="js-displayField" class="parentwrap"/></div><button id="js-clear">C</button>
+<body class="diagonalimg">
+    <h1>jQuery/Nodejs/Server-Side Calculator</h1>
+    <div class="calculator">
+    <h2>Simple Calculator</h2>
+        <div id="js-displayField" class="parentwrap"/></div><button id="js-clear">C</button>
         <br />
-      <div id="js-buttons">
-        <button data-math="1">1</button>
-        <button data-math="2">2</button>
-        <button data-math="3">3</button>
-        <button data-math="+">+</button>
-        <br />
-        <button data-math="4">4</button>
-        <button data-math="5">5</button>
-        <button data-math="6">6</button>
-        <button data-math="-">-</button>
-        <br />
-        <button data-math="7">7</button>
-        <button data-math="8">8</button>
-        <button data-math="9">9</button>
-        <button data-math="*">*</button>
-        <br />
-        <button data-math="0">0</button>
-        <button data-math=".">.</button>
-        <button data-math="/">/</button>
-        <button id="js-calculate">=</button>
-      </div>
-      
+            <div id="js-buttons">
+                <button data-math="1">1</button>
+                <button data-math="2">2</button>
+                <button data-math="3">3</button>
+                <button data-math="+">+</button>
+                <br />
+                <button data-math="4">4</button>
+                <button data-math="5">5</button>
+                <button data-math="6">6</button>
+                <button data-math="-">-</button>
+                <br />
+                <button data-math="7">7</button>
+                <button data-math="8">8</button>
+                <button data-math="9">9</button>
+                <button data-math="*">*</button>
+                <br />
+                <button data-math="0">0</button>
+                <button data-math=".">.</button>
+                <button id="js-calculate">=</button>
+                <button data-math="/">/</button>
+            </div>
+        <div id="js-answer"><p>Answer:</p></div>
     </div>
-    <div id="js-answer"></div>
-    <div>
-      History:
-      <ul id="js-history"></ul>
-      <button class="js-clear-history">Clear History</button>
+        <div class="historyOutput">
+            <h3>History:</h3>
+            <div class="historyDisplay"><ul id="js-history"></ul></div>
+            <button class="js-clear-history">Clear History</button>
+        </div>
     </div>
-  </body>
+</body>
 </html>
