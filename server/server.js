@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-const history = [];
+let history = [];
 
 // use these enhancers for testing and request use
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,16 +20,16 @@ app.post('/calculate', (req, res) => {
   console.log(equation.firstNum);
   if (equation.calcType === '+') {
     equation.answer =
-      parseInt(equation.firstNum) + parseInt(equation.secondNum);
+      parseFloat(equation.firstNum) + parseFloat(equation.secondNum);
   } else if (equation.calcType === '-') {
     equation.answer =
-      parseInt(equation.firstNum) - parseInt(equation.secondNum);
+      parseFloat(equation.firstNum) - parseFloat(equation.secondNum);
   } else if (equation.calcType === '*') {
     equation.answer =
-      parseInt(equation.firstNum) * parseInt(equation.secondNum);
+      parseFloat(equation.firstNum) * parseFloat(equation.secondNum);
   } else if (equation.calcType === '/') {
     equation.answer =
-      parseInt(equation.firstNum) / parseInt(equation.secondNum);
+      parseFloat(equation.firstNum) / parseFloat(equation.secondNum);
   }
   //   equation.answer = 0;
   console.log(equation.answer);
@@ -37,6 +37,11 @@ app.post('/calculate', (req, res) => {
 
   history.push(equation);
   res.sendStatus(201);
+});
+
+app.delete('/removeHistory', (req, res) => {
+  history = [];
+  res.send(history);
 });
 
 app.listen(5000, () => {

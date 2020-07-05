@@ -1,0 +1,38 @@
+p {
+  margin: 0px;
+  font-size: 20px;
+  display: inline-flex;
+}
+
+button {
+  background-color: slategray;
+  color: skyblue;
+  margin: 5px;
+  padding: 5px;
+  height: 50px;
+  width: 50px;
+}
+
+#js-displayField {
+  height: 50px;
+  width: 175px;
+  border: 1px gray solid;
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+
+#js-clear {
+  display: inline-block;
+  position: relative;
+  left: 15px;
+}
+
+.parentwrap {
+  vertical-align: top;
+}
+
+.js-clear-history {
+  width: 100px;
+}

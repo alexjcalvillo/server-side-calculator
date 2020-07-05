@@ -1,26 +1,17 @@
 $(document).ready(init);
 let calcType = '';
-let inputValue1 = '';
-let inputValue2 = '';
+let inputValue1 = [];
+let inputValue2 = [];
 
 function init() {
   console.log('jquery is loaded');
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 16; i++) {
     $('button').eq(i).on('click', { value: i }, setMathType);
   }
 
-  //   $('.js-button-selector').on('click', (event) => {
-  //     console.log($(this).data());
-  //     // if ($(this).data() === '+' || '-' || '/' || '*') {
-  //     //   calcType = $(this).data().math;
-  //     //   console.log(calcType);
-  //     // } else {
-  //     //   console.log($(this).data('math'));
-  //     // }
-  //   });
-
   $('#js-calculate').on('click', submitMath);
   $('#js-clear').on('click', reset);
+  $('.js-clear-history').on('click', clearHistory);
 }
 
 function setMathType(event) {
@@ -51,10 +42,14 @@ function setMathType(event) {
     case 7:
     case 8:
     case 9:
+    case 0:
+    case '.':
       if (calcType === '') {
-        inputValue1 = value;
+        inputValue1.push(value);
+        console.log(inputValue1);
       } else {
-        inputValue2 = value;
+        inputValue2.push(value);
+        console.log(inputValue2);
       }
     default:
       break;
@@ -65,8 +60,8 @@ function setMathType(event) {
 function submitMath() {
   console.log('calculating');
   const equation = {
-    firstNum: inputValue1,
-    secondNum: inputValue2,
+    firstNum: inputValue1.join(''),
+    secondNum: inputValue2.join(''),
     calcType,
   };
 
@@ -92,9 +87,12 @@ function submitMath() {
 }
 
 function reset() {
-  inputValue1 = '';
-  inputValue2 = '';
+  inputValue1 = [];
+  console.log(inputValue1);
+  inputValue2 = [];
   calcType = '';
+  renderInputs();
+  $('.answer').remove();
 }
 
 function getCalculation() {
@@ -109,11 +107,12 @@ function getCalculation() {
 }
 
 function render(calcWithAnswer) {
-  // TODO: display stuff on html screen
+  // display stuff on html screen
   console.log(calcWithAnswer);
-  $('#js-answer').empty();
   $('#js-answer').append(`
-    <p>Answer: ${calcWithAnswer[calcWithAnswer.length - 1].answer}</p>
+    <p class='answer'>Answer: ${
+      calcWithAnswer[calcWithAnswer.length - 1].answer
+    }</p>
     `);
   $('#js-history').empty();
   for (let i = 0; i < calcWithAnswer.length; i++) {
@@ -125,11 +124,26 @@ function render(calcWithAnswer) {
 
 function renderInputs() {
   console.log('in renderInputs');
-  $('#js-first-number').empty();
+  $('#js-displayField').empty();
 
-  $('#js-first-number').append(`
-  <p>${inputValue1} ${calcType} ${inputValue2}</p>
+  let displayValue1 = inputValue1.join('');
+  let displayValue2 = inputValue2.join('');
+
+  $('#js-displayField').append(`
+  <p>${displayValue1} ${calcType} ${displayValue2}</p>
   `);
 }
 
-function createInput1() {}
+function clearHistory() {
+  $.ajax({
+    type: 'DELETE',
+    url: '/removeHistory',
+  }).then((response) => {
+    console.log('DELETE - ', response);
+    renderClear();
+  });
+}
+
+function renderClear() {
+  $('#js-history').empty();
+}

@@ -13,11 +13,8 @@
     <div>Hello</div>
     <div>
       <div
-        id="js-first-number"
-      /></div>
-      <div
-      id="js-second-number"
-    ></div>
+        id="js-displayField" class="parentwrap"/></div><button id="js-clear">C</button>
+        <br />
       <div id="js-buttons">
         <button data-math="1">1</button>
         <button data-math="2">2</button>
@@ -32,17 +29,20 @@
         <button data-math="7">7</button>
         <button data-math="8">8</button>
         <button data-math="9">9</button>
-        <button data-math="/">/</button>
-        <button data-math="0">0</button>
         <button data-math="*">*</button>
+        <br />
+        <button data-math="0">0</button>
+        <button data-math=".">.</button>
+        <button data-math="/">/</button>
+        <button id="js-calculate">=</button>
       </div>
-      <button id="js-calculate">=</button>
-      <button id="js-clear">C</button>
+      
     </div>
-    <div id="js-answer">Answer: 0</div>
+    <div id="js-answer"></div>
     <div>
       History:
       <ul id="js-history"></ul>
+      <button class="js-clear-history">Clear History</button>
     </div>
   </body>
 </html>
